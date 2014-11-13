@@ -1,0 +1,30 @@
+{
+  "name": "detective-sass",
+  "version": "0.0.0",
+  "description": "Find the dependencies of a sass file by traversing the AST.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrjoelkemp/node-detective-sass.git"
+  },
+  "keywords": [
+    "detective",
+    "sass",
+    "ast",
+    "dependencies"
+  ],
+  "author": "Joel Kemp <joel@mrjoelkemp.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrjoelkemp/node-detective-sass/issues"
+  },
+  "homepage": "https://github.com/mrjoelkemp/node-detective-sass",
+  "devDependencies": {
+    "mocha": "~2.0.1"
+  },
+  "dependencies": {
+  }
+}
