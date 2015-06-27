@@ -1,6 +1,6 @@
 {
   "name": "detective-sass",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Find the dependencies of a sass file",
   "main": "index.js",
   "scripts": {
