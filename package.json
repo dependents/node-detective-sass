@@ -1,7 +1,7 @@
 {
   "name": "detective-sass",
   "version": "1.0.1",
-  "description": "Find the dependencies of a sass file by traversing the AST.",
+  "description": "Find the dependencies of a sass file",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/test.js"

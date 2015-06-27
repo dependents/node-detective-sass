@@ -18,6 +18,10 @@ describe('detective-sass', function() {
     hasDependencies('@import "_foo.scss";\n@import "_bar.scss";\n@import "_baz";\n@import "_buttons";');
   });
 
+  it('allows imports with no semicolon', function() {
+    hasDependencies('@import "_foo.scss"\n@import "_bar.scss"');
+  });
+
   it('does not throw for empty files', function() {
     assert.doesNotThrow(function() {
       detective('');
