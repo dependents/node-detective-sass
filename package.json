@@ -26,8 +26,8 @@
     "mocha": "~2.0.1"
   },
   "dependencies": {
+    "dependents-sass-thematic": "~2.0.4",
     "node-sass": "~3.8.0",
-    "node-source-walk": "~3.0.0",
-    "sass-thematic": "git://github.com/dependents/sass-thematic.git#master"
+    "node-source-walk": "~3.0.0"
   }
 }
