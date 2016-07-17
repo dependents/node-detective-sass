@@ -6,21 +6,41 @@ describe('detective-sass', function() {
     assert.deepEqual(detective(src), deps);
   }
 
-  it('does not throw for empty files', function() {
-    assert.doesNotThrow(function() {
-      detective('');
+  describe('throws', function() {
+    it('does not throw for empty files', function() {
+      assert.doesNotThrow(function() {
+        detective('');
+      });
+    });
+
+    it('throws if the given content is not a string', function() {
+      assert.throws(function() {
+        detective(function() {});
+      });
+    });
+
+    it('throws if called with no arguments', function() {
+      assert.throws(function() {
+        detective();
+      });
+    });
+
+    it('does not throw on broken syntax', function() {
+      assert.doesNotThrow(function() {
+        detective('@');
+      });
     });
   });
 
-  it('throws if the given content is not a string', function() {
-    assert.throws(function() {
-      detective(function() {});
-    });
+  it('dangles the parsed AST', function() {
+    detective('@import "_foo.scss";');
+    assert.ok(detective.ast);
   });
 
-  it('throws if called with no arguments', function() {
-    assert.throws(function() {
-      detective();
+  describe('when there is a parse error', function() {
+    it('supplies an empty object as the "parsed" ast', function() {
+      detective('|');
+      assert.deepEqual(detective.ast, {});
     });
   });
 
