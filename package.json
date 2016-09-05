@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "debug": "~2.2.0",
-    "gonzales-pe": "~3.3.6",
-    "node-source-walk": "~3.0.0"
+    "gonzales-pe": "^3.4.4",
+    "node-source-walk": "^3.2.0"
   }
 }
