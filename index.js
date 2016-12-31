@@ -8,19 +8,16 @@ var debug = require('debug')('detective-sass');
  * @param  {String} fileContent
  * @return {String[]}
  */
-module.exports = function detective(fileContent, opts) {
+module.exports = function detective(fileContent) {
   if (typeof fileContent === 'undefined') { throw new Error('content not given'); }
   if (typeof fileContent !== 'string') { throw new Error('content is not a string'); }
-  if (Object.prototype.toString.call(opts) !== '[object Object]') { opts = {}; }
 
   var dependencies = [];
   var ast;
 
   try {
     debug('content: ' + fileContent);
-    ast = sass.parse(fileContent, {
-      syntax: opts.syntax || 'sass'
-    });
+    ast = sass.parse(fileContent, { syntax: 'sass' });
   } catch (e) {
     debug('parse error: ', e.message);
     ast = {};
