@@ -33,7 +33,7 @@ describe('detective-sass', function() {
   });
 
   it('dangles the parsed AST', function() {
-    detective('@import "_foo.scss";');
+    detective('@import "_foo.sass";');
     assert.ok(detective.ast);
   });
 
@@ -41,36 +41,6 @@ describe('detective-sass', function() {
     it('supplies an empty object as the "parsed" ast', function() {
       detective('|');
       assert.deepEqual(detective.ast, {});
-    });
-  });
-
-  describe('scss', function() {
-    it('returns the dependencies of the given .scss file content', function() {
-      var scssOpts = {
-        syntax: 'scss'
-      };
-
-      test('@import "_foo.scss";', ['_foo.scss'], scssOpts);
-      test('@import          "_foo.scss";', ['_foo.scss'], scssOpts);
-      test('@import "_foo";', ['_foo'], scssOpts);
-      test('body { color: blue; } @import "_foo";', ['_foo'], scssOpts);
-      test('@import "bar";', ['bar'], scssOpts);
-      test('@import "bar"; @import "foo";', ['bar', 'foo'], scssOpts);
-      test('@import \'bar\';', ['bar'], scssOpts);
-      test('@import \'bar.scss\';', ['bar.scss'], scssOpts);
-      test('@import "_foo.scss";\n@import "_bar.scss";', ['_foo.scss', '_bar.scss'], scssOpts);
-      test('@import "_foo.scss";\n@import "_bar.scss";\n@import "_baz";\n@import "_buttons";', ['_foo.scss', '_bar.scss', '_baz', '_buttons'], scssOpts);
-      test('@import "_nested.scss"; body { color: blue; a { text-decoration: underline; }}', ['_nested.scss'], scssOpts);
-    });
-
-    it('handles comma-separated imports (#2)', function() {
-      test('@import "_foo.scss", "bar";', ['_foo.scss', 'bar'], {
-        syntax: 'scss'
-      });
-    });
-
-    it('allows imports with no semicolon', function() {
-      test('@import "_foo.scss"\n@import "_bar.scss"', ['_foo.scss', '_bar.scss']);
     });
   });
 
