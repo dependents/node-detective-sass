@@ -1,5 +1,7 @@
-var detective = require('../');
-var assert = require('assert');
+'use strict';
+
+const detective = require('../');
+const assert = require('assert');
 
 describe('detective-sass', function() {
   function test(src, deps, opts) {
