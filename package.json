@@ -22,12 +22,15 @@
     "url": "https://github.com/mrjoelkemp/node-detective-sass/issues"
   },
   "homepage": "https://github.com/mrjoelkemp/node-detective-sass",
+  "engines": {
+    "node": ">= 6.0"
+  },
   "devDependencies": {
-    "mocha": "~2.0.1"
+    "mocha": "^5.2.0"
   },
   "dependencies": {
     "debug": "^3.1.0",
-    "gonzales-pe": "^3.4.4",
-    "node-source-walk": "^3.2.0"
+    "gonzales-pe": "^4.2.3",
+    "node-source-walk": "^4.0.0"
   }
 }

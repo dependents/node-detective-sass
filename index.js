@@ -1,6 +1,8 @@
-var Walker = require('node-source-walk');
-var sass = require('gonzales-pe');
-var debug = require('debug')('detective-sass');
+'use strict';
+
+const Walker = require('node-source-walk');
+const sass = require('gonzales-pe');
+const debug = require('debug')('detective-sass');
 
 /**
  * Extract the @import statements from a given sass file's content
@@ -12,8 +14,8 @@ module.exports = function detective(fileContent) {
   if (typeof fileContent === 'undefined') { throw new Error('content not given'); }
   if (typeof fileContent !== 'string') { throw new Error('content is not a string'); }
 
-  var dependencies = [];
-  var ast;
+  let dependencies = [];
+  let ast;
 
   try {
     debug('content: ' + fileContent);
@@ -25,7 +27,7 @@ module.exports = function detective(fileContent) {
 
   detective.ast = ast;
 
-  var walker = new Walker();
+  const walker = new Walker();
 
   walker.walk(ast, function(node) {
     if (!isImportStatement(node)) { return; }
