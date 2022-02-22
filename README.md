@@ -15,6 +15,7 @@ It's the SASS counterpart to [detective](https://github.com/substack/node-detect
 ### Usage
 
 ```js
+const fs = require('fs');
 const detective = require('detective-sass');
 
 const content = fs.readFileSync('styles.sass', 'utf8');
