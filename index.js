@@ -4,10 +4,10 @@ const { debuglog } = require('util');
 const Walker = require('node-source-walk');
 const sass = require('gonzales-pe');
 
-const debug = debuglog('detective-scss');
+const debug = debuglog('detective-sass');
 
 /**
- * Extract the @import statements from a given scss file's content
+ * Extract the @import statements from a given sass file's content
  *
  * @param  {String} fileContent
  * @return {String[]}
@@ -21,7 +21,7 @@ module.exports = function detective(fileContent) {
 
   try {
     debug('content: %s', fileContent);
-    ast = sass.parse(fileContent, { syntax: 'scss' });
+    ast = sass.parse(fileContent, { syntax: 'sass' });
   } catch (error) {
     debug('parse error: %s', error.message);
   }
