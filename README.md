@@ -1,4 +1,4 @@
-### detective-sass [![CI](https://img.shields.io/github/workflow/status/dependents/node-detective-sass/CI/main?label=CI&logo=github)](https://github.com/dependents/node-detective-sass/actions/workflows/ci.yml?query=branch%3Amain) [![npm](https://img.shields.io/npm/v/detective-sass)](https://www.npmjs.com/package/detective-sass) [![npm](https://img.shields.io/npm/dm/detective-sass)](https://www.npmjs.com/package/detective-sass)
+### detective-sass [![CI](https://img.shields.io/github/actions/workflow/status/dependents/node-detective-sass/ci.yml?branch=main&label=CI&logo=github)](https://github.com/dependents/node-detective-sass/actions/workflows/ci.yml?query=branch%3Amain) [![npm](https://img.shields.io/npm/v/detective-sass)](https://www.npmjs.com/package/detective-sass) [![npm](https://img.shields.io/npm/dm/detective-sass)](https://www.npmjs.com/package/detective-sass)
 
 > Find the dependencies of a sass file
 
