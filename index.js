@@ -18,9 +18,7 @@ module.exports = function detective(fileContent, options) {
   if (typeof fileContent === 'undefined') throw new Error('content not given');
   if (typeof fileContent !== 'string') throw new Error('content is not a string');
 
-  const isEnabledUrl = options && options.url;
-
-  let dependencies = [];
+  const isUrlEnabled = options && options.url;
   let ast = {};
 
   try {
@@ -33,15 +31,16 @@ module.exports = function detective(fileContent, options) {
   detective.ast = ast;
 
   const walker = new Walker();
+  let dependencies = [];
 
   walker.walk(ast, (node) => {
     if (isImportStatement(node)) {
-      dependencies = dependencies.concat(extractDependencies(node));
+      dependencies = [...dependencies, ...extractDependencies(node)];
       return;
     }
 
-    if (isEnabledUrl && isUrlNode(node)) {
-      dependencies = dependencies.concat(extractUriDependencies(node));
+    if (isUrlEnabled && isUrlNode(node)) {
+      dependencies = [...dependencies, ...extractUriDependencies(node)];
       return;
     }
   });
@@ -59,23 +58,21 @@ function isImportStatement(node) {
 
   const importKeyword = atKeyword.content[0];
 
-  if (importKeyword.type !== 'ident' || importKeyword.content !== 'import') return false;
-
-  return true;
-}
-
-function extractDependencies(importStatementNode) {
-  return importStatementNode.content
-    .filter((innerNode) => innerNode.type === 'string' || innerNode.type === 'ident')
-    .map((identifierNode) => identifierNode.content.replace(/["']/g, ''));
+  return ['ident', 'import'].includes(importKeyword.type);
 }
 
 function isUrlNode(node) {
   return node.type === 'uri';
 }
 
+function extractDependencies(importStatementNode) {
+  return importStatementNode.content
+    .filter((innerNode) => ['string', 'ident'].includes(innerNode.type))
+    .map((identifierNode) => identifierNode.content.replace(/["']/g, ''));
+}
+
 function extractUriDependencies(importStatementNode) {
   return importStatementNode.content
-    .filter((innerNode) => innerNode.type === 'string' || innerNode.type === 'ident' || innerNode.type === 'raw')
+    .filter((innerNode) => ['string', 'ident', 'raw'].includes(innerNode.type))
     .map((identifierNode) => identifierNode.content.replace(/["']/g, ''));
 }
