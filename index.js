@@ -33,7 +33,7 @@ module.exports = function detective(fileContent, options) {
   const walker = new Walker();
   let dependencies = [];
 
-  walker.walk(ast, (node) => {
+  walker.walk(ast, node => {
     if (isImportStatement(node)) {
       dependencies = [...dependencies, ...extractDependencies(node)];
       return;
@@ -41,7 +41,6 @@ module.exports = function detective(fileContent, options) {
 
     if (isUrlEnabled && isUrlNode(node)) {
       dependencies = [...dependencies, ...extractUriDependencies(node)];
-      return;
     }
   });
 
@@ -67,12 +66,12 @@ function isUrlNode(node) {
 
 function extractDependencies(importStatementNode) {
   return importStatementNode.content
-    .filter((innerNode) => ['string', 'ident'].includes(innerNode.type))
-    .map((identifierNode) => identifierNode.content.replace(/["']/g, ''));
+    .filter(innerNode => ['string', 'ident'].includes(innerNode.type))
+    .map(identifierNode => identifierNode.content.replace(/["']/g, ''));
 }
 
 function extractUriDependencies(importStatementNode) {
   return importStatementNode.content
-    .filter((innerNode) => ['string', 'ident', 'raw'].includes(innerNode.type))
-    .map((identifierNode) => identifierNode.content.replace(/["']/g, ''));
+    .filter(innerNode => ['string', 'ident', 'raw'].includes(innerNode.type))
+    .map(identifierNode => identifierNode.content.replace(/["']/g, ''));
 }

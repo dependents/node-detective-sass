@@ -58,23 +58,23 @@ sassSuite('returns the url dependencies when enable url', () => {
   test(
     '@font-face\n  font-family: "Trickster"\n  src: local("Trickster"), url("trickster-COLRv1.otf") format("opentype") tech(color-COLRv1), url("trickster-outline.otf") format("opentype"), url("trickster-outline.woff") format("woff")',
     [
-      "trickster-COLRv1.otf",
-      "trickster-outline.otf",
-      "trickster-outline.woff"
+      'trickster-COLRv1.otf',
+      'trickster-outline.otf',
+      'trickster-outline.woff'
     ],
-    { url: true}
+    { url: true }
   );
 
   test(
     'body\n  div\n    background: no-repeat center/80% url("foo.png")',
-    ["foo.png",],
-    { url: true}
+    ['foo.png'],
+    { url: true }
   );
 
   test(
     'body\n  div\n    background: no-repeat center/80% url(foo.png)',
-    ["foo.png",],
-    { url: true}
+    ['foo.png'],
+    { url: true }
   );
 });
 
