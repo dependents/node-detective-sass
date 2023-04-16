@@ -7,11 +7,11 @@
     "index.js"
   ],
   "scripts": {
-    "lint": "eslint index.js \"test/*.js\"",
+    "lint": "eslint .",
     "fix": "npm run lint -- --fix",
-    "mocha": "mocha",
-    "test": "npm run lint && npm run mocha",
-    "test:ci": "c8 npm run mocha"
+    "uvu": "uvu test -i fixtures",
+    "test": "npm run lint && npm run uvu",
+    "test:ci": "c8 npm run uvu"
   },
   "repository": {
     "type": "git",
@@ -34,11 +34,11 @@
   },
   "dependencies": {
     "gonzales-pe": "^4.3.0",
-    "node-source-walk": "^5.0.0"
+    "node-source-walk": "^5.0.1"
   },
   "devDependencies": {
     "c8": "^7.13.0",
-    "eslint": "^8.36.0",
-    "mocha": "^9.2.2"
+    "eslint": "^8.38.0",
+    "uvu": "^0.5.6"
   }
 }
