@@ -39,7 +39,7 @@ module.exports = function detective(fileContent, options) {
       return;
     }
 
-    if (isUrlEnabled && isUrlNode(node)) {
+    if (isUrlEnabled && node.type === 'uri') {
       dependencies = [...dependencies, ...extractUriDependencies(node)];
     }
   });
@@ -58,10 +58,6 @@ function isImportStatement(node) {
   const importKeyword = atKeyword.content[0];
 
   return ['ident', 'import'].includes(importKeyword.type);
-}
-
-function isUrlNode(node) {
-  return node.type === 'uri';
 }
 
 function extractDependencies(importStatementNode) {
