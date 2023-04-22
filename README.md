@@ -6,7 +6,7 @@
 npm install detective-sass
 ```
 
-**Note:** This is specific to the .sass style syntax of the Sass preprocessor. For SCSS support, please see [node-detective-scss](https://github.com/dependents/node-detective-scss)
+**Note:** This is specific to the .sass style syntax of the Sass preprocessor. For SCSS support, please see [node-detective-scss](https://github.com/dependents/node-detective-scss).
 
 It's the SASS counterpart to [detective](https://github.com/substack/node-detective), [detective-amd](https://github.com/dependents/node-detective-amd), and [detective-es6](https://github.com/dependents/node-detective-es6).
 
