@@ -9,21 +9,20 @@ const debug = debuglog('detective-sass');
 /**
  * Extract the @import statements from a given sass file's content
  *
- * @param  {String} fileContent
+ * @param  {String} content
  * @param  {Object} options
  * @param  {Boolean} options.url - detect any url() references to images, fonts, etc.
  * @return {String[]}
  */
-module.exports = function detective(fileContent, options) {
-  if (typeof fileContent === 'undefined') throw new Error('content not given');
-  if (typeof fileContent !== 'string') throw new Error('content is not a string');
+module.exports = function detective(content, options) {
+  if (content === undefined) throw new Error('content not given');
+  if (typeof content !== 'string') throw new Error('content is not a string');
 
-  const isUrlEnabled = options && options.url;
   let ast = {};
 
   try {
-    debug('content: %s', fileContent);
-    ast = sass.parse(fileContent, { syntax: 'sass' });
+    debug('content: %s', content);
+    ast = sass.parse(content, { syntax: 'sass' });
   } catch (error) {
     debug('parse error: %s', error.message);
   }
@@ -39,7 +38,7 @@ module.exports = function detective(fileContent, options) {
       return;
     }
 
-    if (isUrlEnabled && node.type === 'uri') {
+    if (options?.url && node.type === 'uri') {
       dependencies = [...dependencies, ...extractUriDependencies(node)];
     }
   });

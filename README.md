@@ -1,4 +1,8 @@
-### detective-sass [![CI](https://img.shields.io/github/actions/workflow/status/dependents/node-detective-sass/ci.yml?branch=main&label=CI&logo=github)](https://github.com/dependents/node-detective-sass/actions/workflows/ci.yml?query=branch%3Amain) [![npm version](https://img.shields.io/npm/v/detective-sass?logo=npm&logoColor=fff)](https://www.npmjs.com/package/detective-sass) [![npm downloads](https://img.shields.io/npm/dm/detective-sass)](https://www.npmjs.com/package/detective-sass)
+# detective-sass
+
+[![CI](https://img.shields.io/github/actions/workflow/status/dependents/node-detective-sass/ci.yml?branch=main&label=CI&logo=github)](https://github.com/dependents/node-detective-sass/actions/workflows/ci.yml?query=branch%3Amain)
+[![npm version](https://img.shields.io/npm/v/detective-sass?logo=npm&logoColor=fff)](https://www.npmjs.com/package/detective-sass)
+[![npm downloads](https://img.shields.io/npm/dm/detective-sass)](https://www.npmjs.com/package/detective-sass)
 
 > Find the dependencies of a sass file
 
@@ -12,7 +16,7 @@ It's the SASS counterpart to [detective](https://github.com/substack/node-detect
 
 * The AST is generated using the [gonzales-pe](https://github.com/tonyganch/gonzales-pe) parser.
 
-### Usage
+## Usage
 
 ```js
 const fs = require('fs');
@@ -27,11 +31,11 @@ const dependencies = detective(content);
 const allDependencies = detective(content, { url: true });
 ```
 
-### Related
+## Related
 
 * [node-sass-lookup](https://github.com/dependents/node-sass-lookup) if you want to map a sass/scss dependency to a file on your filesystem.
 * [node-precinct](https://github.com/dependents/node-precinct) if you want to also support finding dependencies for JavaScript and other languages.
 
-### License
+## License
 
 [MIT](LICENSE)
