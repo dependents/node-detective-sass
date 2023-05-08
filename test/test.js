@@ -19,13 +19,13 @@ errorSuite('does not throw for empty files', () => {
 errorSuite('throws if the given content is not a string', () => {
   assert.throws(() => {
     detective(() => {});
-  }, Error, 'content is not a string');
+  }, err => err instanceof Error && err.message === 'content is not a string');
 });
 
 errorSuite('throws if called with no arguments', () => {
   assert.throws(() => {
     detective();
-  }, Error, 'src not given');
+  }, err => err instanceof Error && err.message === 'content not given');
 });
 
 errorSuite('does not throw on broken syntax', () => {
