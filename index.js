@@ -14,7 +14,7 @@ const debug = debuglog('detective-sass');
  * @param  {Boolean} options.url - detect any url() references to images, fonts, etc.
  * @return {String[]}
  */
-module.exports = function detective(content, options) {
+module.exports = function detective(content, options = {}) {
   if (content === undefined) throw new Error('content not given');
   if (typeof content !== 'string') throw new Error('content is not a string');
 
