@@ -4,15 +4,13 @@
 [![npm version](https://img.shields.io/npm/v/detective-sass?logo=npm&logoColor=fff)](https://www.npmjs.com/package/detective-sass)
 [![npm downloads](https://img.shields.io/npm/dm/detective-sass)](https://www.npmjs.com/package/detective-sass)
 
-> Find the dependencies of a sass file
+> Find the dependencies of a sass/scss file
 
 ```sh
 npm install detective-sass
 ```
 
-**Note:** This is specific to the .sass style syntax of the Sass preprocessor. For SCSS support, please see [node-detective-scss](https://github.com/dependents/node-detective-scss).
-
-It's the SASS counterpart to [detective](https://github.com/substack/node-detective), [detective-amd](https://github.com/dependents/node-detective-amd), and [detective-es6](https://github.com/dependents/node-detective-es6).
+It's the SASS/SCSS counterpart to [detective](https://github.com/substack/node-detective), [detective-amd](https://github.com/dependents/node-detective-amd), and [detective-es6](https://github.com/dependents/node-detective-es6).
 
 * The AST is generated using the [gonzales-pe](https://github.com/tonyganch/gonzales-pe) parser.
 
@@ -27,10 +25,10 @@ import detective from 'detective-sass';
 const content = fs.readFileSync('styles.sass', 'utf8');
 
 // list of imported file names (ex: '_foo.sass', '_foo', etc)
-const dependencies = detective(content);
+const dependencies = detective(content, { syntax: 'sass' });
 
 // or to also detect any url() references to images, fonts, etc.
-const allDependencies = detective(content, { url: true });
+const allDependencies = detective(content, { syntax: 'sass', url: true });
 ```
 
 ### CommonJS
@@ -41,6 +39,7 @@ const { default: detective } = require('detective-sass');
 
 ### Options
 
+* `syntax`: (String) `'sass'` or `'scss'`; which syntax to use.
 * `url` (optional): (`Boolean`) also detect any `url()` references to images, fonts, etc.
 
 ## Related
