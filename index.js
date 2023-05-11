@@ -2,27 +2,31 @@
 
 const { debuglog } = require('util');
 const Walker = require('node-source-walk');
-const sass = require('gonzales-pe');
+const parser = require('gonzales-pe');
 
 const debug = debuglog('detective-sass');
 
 /**
- * Extract the @import statements from a given sass file's content
+ * Extract the @import statements from a given sass/scss file's content
  *
  * @param  {String} content
  * @param  {Object} options
+ * @param  {Boolean} options.syntax - sass or scss
  * @param  {Boolean} options.url - detect any url() references to images, fonts, etc.
  * @return {String[]}
  */
 module.exports = function detective(content, options = {}) {
   if (content === undefined) throw new Error('content not given');
   if (typeof content !== 'string') throw new Error('content is not a string');
+  if (options.syntax === undefined) throw new Error('`options.syntax` not given; possible values are "sass" and "scss"');
+  if (!['sass', 'scss'].includes(options.syntax)) throw new Error('invalid `options.syntax` value; possible values are "sass" and "scss"');
 
   let ast = {};
 
   try {
     debug('content: %s', content);
-    ast = sass.parse(content, { syntax: 'sass' });
+    debug('options: %o', options);
+    ast = parser.parse(content, { syntax: options.syntax });
   } catch (error) {
     debug('parse error: %s', error.message);
   }
