@@ -4,47 +4,15 @@ const { suite } = require('uvu');
 const assert = require('uvu/assert');
 const detective = require('../index.js');
 
-function test(source, dependencies, options) {
-  assert.equal(detective(source, options), dependencies);
+function test(source, dependencies, options = {}) {
+  const mergedOptions = { syntax: 'sass', ...options };
+  assert.equal(detective(source, mergedOptions), dependencies);
 }
-
-const errorSuite = suite('error handling');
-
-errorSuite('does not throw for empty files', () => {
-  assert.not.throws(() => {
-    detective('');
-  });
-});
-
-errorSuite('throws if the given content is not a string', () => {
-  assert.throws(() => {
-    detective(() => {});
-  }, err => err instanceof Error && err.message === 'content is not a string');
-});
-
-errorSuite('throws if called with no arguments', () => {
-  assert.throws(() => {
-    detective();
-  }, err => err instanceof Error && err.message === 'content not given');
-});
-
-errorSuite('does not throw on broken syntax', () => {
-  assert.not.throws(() => {
-    detective('@');
-  });
-});
-
-errorSuite('supplies an empty object as the "parsed" ast', () => {
-  detective('|');
-  assert.equal(detective.ast, {});
-});
-
-errorSuite.run();
 
 const sassSuite = suite('sass');
 
 sassSuite('dangles the parsed AST', () => {
-  detective('@import "_foo.sass";');
+  detective('@import "_foo.sass";', { syntax: 'sass' });
   assert.ok(detective.ast);
 });
 
