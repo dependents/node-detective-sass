@@ -31,6 +31,10 @@ const dependencies = detective(content);
 const allDependencies = detective(content, { url: true });
 ```
 
+### Options
+
+* `url` (optional): (`Boolean`) also detect any `url()` references to images, fonts, etc.
+
 ## Related
 
 * [node-sass-lookup](https://github.com/dependents/node-sass-lookup) if you want to map a sass/scss dependency to a file on your filesystem.
