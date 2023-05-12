@@ -54,9 +54,7 @@ function isImportStatement(node) {
 
   if (atKeyword.content.length === 0) return false;
 
-  const importKeyword = atKeyword.content[0];
-
-  return ['ident', 'import'].includes(importKeyword.type);
+  return ['ident', 'import'].includes(atKeyword.content[0].type);
 }
 
 function extractDependencies(importStatementNode) {
