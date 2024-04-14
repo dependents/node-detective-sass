@@ -60,11 +60,11 @@ function isImportStatement(node) {
 function extractDependencies(importStatementNode) {
   return importStatementNode.content
     .filter(innerNode => ['string', 'ident'].includes(innerNode.type))
-    .map(identifierNode => identifierNode.content.replace(/["']/g, ''));
+    .map(identifierNode => identifierNode.content.replaceAll(/["']/g, ''));
 }
 
 function extractUriDependencies(importStatementNode) {
   return importStatementNode.content
     .filter(innerNode => ['string', 'ident', 'raw'].includes(innerNode.type))
-    .map(identifierNode => identifierNode.content.replace(/["']/g, ''));
+    .map(identifierNode => identifierNode.content.replaceAll(/["']/g, ''));
 }
