@@ -30,16 +30,16 @@ module.exports = function detective(content, options = {}) {
   detective.ast = ast;
 
   const walker = new Walker();
-  let dependencies = [];
+  const dependencies = [];
 
   walker.walk(ast, node => {
     if (isImportStatement(node)) {
-      dependencies = [...dependencies, ...extractDependencies(node, ['string', 'ident'])];
+      dependencies.push(...extractDependencies(node, ['string', 'ident']));
       return;
     }
 
     if (options?.url && node.type === 'uri') {
-      dependencies = [...dependencies, ...extractDependencies(node, ['string', 'ident', 'raw'])];
+      dependencies.push(...extractDependencies(node, ['string', 'ident', 'raw']));
     }
   });
 
