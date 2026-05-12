@@ -1,8 +1,6 @@
-'use strict';
-
-const { suite } = require('uvu');
-const assert = require('uvu/assert');
-const detective = require('../index.js');
+import { suite } from 'uvu';
+import * as assert from 'uvu/assert';
+import detective from '../index.js';
 
 function test(source, dependencies, options) {
   assert.equal(detective(source, options), dependencies);
