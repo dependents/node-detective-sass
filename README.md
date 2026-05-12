@@ -18,9 +18,11 @@ It's the SASS counterpart to [detective](https://github.com/substack/node-detect
 
 ## Usage
 
+### ESM
+
 ```js
-const fs = require('fs');
-const detective = require('detective-sass');
+import fs from 'node:fs';
+import detective from 'detective-sass';
 
 const content = fs.readFileSync('styles.sass', 'utf8');
 
@@ -29,6 +31,12 @@ const dependencies = detective(content);
 
 // or to also detect any url() references to images, fonts, etc.
 const allDependencies = detective(content, { url: true });
+```
+
+### CommonJS
+
+```js
+const { default: detective } = require('detective-sass');
 ```
 
 ### Options
