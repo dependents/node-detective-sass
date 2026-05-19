@@ -1,6 +1,6 @@
 {
   "name": "detective-sass",
-  "version": "6.0.2",
+  "version": "7.0.0",
   "description": "Find the dependencies of a sass file",
   "type": "module",
   "exports": {
